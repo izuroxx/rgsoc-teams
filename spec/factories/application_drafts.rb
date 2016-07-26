@@ -14,7 +14,9 @@ FactoryGirl.define do
 
       after(:create) do |draft|
         draft.students.each do |student|
-          student.update(attributes_for :student, :applicant)
+          byebug
+          student_update_attributes = (attributes_for :student, :applicant).delete(:github_handle) 
+          student.update(student_update_attributes)
         end
       end
     end
