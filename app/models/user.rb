@@ -85,6 +85,7 @@ class User < ActiveRecord::Base
 
   before_save :sanitize_location
   after_create :complete_from_github
+  # after_rollback :restore_attributes
 
   class << self
     def ordered(order = nil, direction = 'asc')
@@ -177,6 +178,7 @@ class User < ActiveRecord::Base
   def immutable_github_handle
     return if new_record?
     errors[:github_handle] = 'can\'t be changed' if github_handle_changed?
+    # errors.delete(:github_handle)
   end
 
 end
