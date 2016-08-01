@@ -36,10 +36,7 @@ class ProjectsController < ApplicationController
     @project.submitter = current_user
     @project.season = Season.transition? ? Season.succ : Season.current
     respond_to do |format|
-      if @project.save
-        ProjectMailer.proposal(@project).deliver_later
-        format.html { redirect_to receipt_project_path(@project) }
-      else
+      if  params[:preview_button] || !@project.save
         format.html { render action: :new }
       end
     end

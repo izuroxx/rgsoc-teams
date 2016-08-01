@@ -7,12 +7,18 @@ nav.page
 p.well Please make sure you have read our #{link_to "mentor guide", 'http://railsgirlssummerofcode.org/guide/projects/'} before you submit your Open Source project for the upcoming Rails Girls Summer of Code.
 
 = simple_nested_form_for @project do |f|
+
+  - if params[:preview_button]
+    = render partial: "preview"
+
   - if @project.errors.any?
     #error_explanation
       h2 = "#{pluralize(@project.errors.count, "error")} prohibited this project from being saved:"
       ul
         - @project.errors.full_messages.each do |message|
           li = message
+
+
 
   = f.input :name, required: true, wrapper_html: { class: 'col-md-6' }, label: 'Project name'
   = f.input :mentor_name, required: true, wrapper_html: { class: 'col-md-6' }
@@ -26,5 +32,11 @@ p.well Please make sure you have read our #{link_to "mentor guide", 'http://rail
   = f.input :code_of_conduct, as: :url, wrapper_html: { class: 'col-md-6' }, label: "Code Of Conduct", placeholder: "Link to your project's code of conduct"
   = f.input :beginner_friendly, wrapper_html: { class: 'col-md-6' }, label: 'Suitable for beginners?'
   .actions
+
+    ul.list-inline
+      li = f.submit 'Preview', class: 'btn btn-default', name: "preview_button"
+
     ul.list-inline
       li = f.submit 'Submit', class: 'btn btn-success'
+      
+
