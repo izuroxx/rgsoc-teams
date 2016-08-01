@@ -38,6 +38,10 @@ class ProjectsController < ApplicationController
     respond_to do |format|
       if  params[:preview_button] || !@project.save
         format.html { render action: :new }
+      else
+        @project.save
+        ProjectMailer.proposal(@project).deliver_later
+        format.html { redirect_to receipt_project_path(@project) }
       end
     end
   end
