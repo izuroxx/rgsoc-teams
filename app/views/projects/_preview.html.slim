@@ -1,4 +1,8 @@
-nav.actions
+.preview
+  h3 = "Preview"
+
+  = content_tag :h1, @project.name
+
   table.table.table-striped.table-bordered
     tr
       th Mentor
@@ -31,6 +35,7 @@ nav.actions
     tr
       th Code of Conduct 
       td = link_to @project.code_of_conduct, @project.code_of_conduct
+
   h2.header
     = icon('file')
     span Project Description
@@ -44,3 +49,4 @@ nav.actions
   - if @project.issues_and_features
     .projects
       p = render_markdown(@project.issues_and_features).html_safe
+
