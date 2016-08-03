@@ -36,7 +36,7 @@ class ProjectsController < ApplicationController
     @project.submitter = current_user
     @project.season = Season.transition? ? Season.succ : Season.current
     respond_to do |format|
-      if  params[:preview_button] || !@project.save
+      if params[:preview_button] || !@project.save
         format.html { render action: :new }
       else
         @project.save
@@ -48,6 +48,11 @@ class ProjectsController < ApplicationController
 
   def receipt
     @project = Project.find(params[:id])
+  end
+
+  def preview
+    @project = Project.find(params[:preview_button])
+
   end
 
   def update
