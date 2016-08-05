@@ -50,10 +50,10 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
   end
 
-  def preview
-    @project = Project.find(params[:preview_button])
+  # def preview
+  #   @project = Project.find(params[:preview_button])
 
-  end
+  # end
 
   def update
     respond_to do |format|
