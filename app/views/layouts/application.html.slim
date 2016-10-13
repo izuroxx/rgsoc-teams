@@ -42,10 +42,10 @@ html
         ' })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
         ' ga('create', 'UA-41237864-1', 'railsgirlssummerofcode.org');
         ' ga('send', 'pageview');
-
     section.container#footer
       footer.footer
         ul
           li &copy; #{ Season.current.name } Rails Girls Summer of Code
           li = link_to 'Imprint', "http://railsgirlssummerofcode.org/about/impressum/"
           li = link_to 'Help', page_path('help')
+script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB_9YW50qj8DAijjhe0cCUYpwX-KUhtQ5Q&libraries=places&callback=init"
